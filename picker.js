@@ -1,58 +1,70 @@
 const wordSets = [
-  ["Ancestral ", "Hot Dog ", "Minotaur"],
-  ["Eldrazi ", "Guacamole ", "Tightrope"],
-  ["Misunderstood ", "Trapeze ", "Elf"],
-  ["Narrow-Minded ", "Baloney ", "Fireworks"],
-  ["Phyrexian ", "Midway ", "Bamaboozle"],
-  ["Playable ", "Delusionary ", "Hydra"],
-  ["Trained ", "Blessed ", "Mind"],
-  ["Unassuming ", "Gelationous ", "Serpent"],
-  ["Unglued ", "pea-brained ", "dinosaur"],
-  ["unsanctioned ", "ancient ", "juggler"],
+  ["Ancestral", "Hot Dog", "Minotaur"],
+  ["Eldrazi", "Guacamole", "Tightrope"],
+  ["Misunderstood", "Trapeze", "Elf"],
+  ["Narrow-Minded", "Baloney", "Fireworks"],
+  ["Phyrexian", "Midway", "Bamaboozle"],
+  ["Playable", "Delusionary", "Hydra"],
+  ["Trained", "Blessed", "Mind"],
+  ["Unassuming", "Gelationous", "Serpent"],
+  ["Unglued", "pea-brained", "dinosaur"],
+  ["unsanctioned", "ancient", "juggler"],
 ];
-let chosen = [];
+
+function countVowels(s) {
+  const vowelRegex = /([aeiouy])(?!.*\1)/gi;
+  const matches = s.match(vowelRegex);
+  return matches ? matches.length : 0;
+}
 
 function checkSet() {
   // set up temp sets
   let tempSet = [...wordSets]; //create a shallow ref meaning no overwrite
-
   // add 3 sets randomly to chosen
-  for (let i = 0; i < 3; i++) {
-    const randIndex = Math.floor(Math.random() * tempSet.length);
-    chosen.push(tempSet[randIndex]);
-    tempSet.splice(randIndex, 1);
-  }
+  //            make array of len 3         fill with 3 random splices of tempSet                [0] bc splice returns array
+  let chosen = Array.from({length:3}, () => tempSet.splice(Math.floor(Math.random() * tempSet.length), 1)[0])
+  //               sort by max number of vowels. if b has higher max vowels it should go before a
+                    .sort((a,b) => Math.max(...b.map(s => countVowels(s))) - Math.max(...a.map(s => countVowels(s))));
+  
 
-  const vowelRegex = /([aeiouy])(?!.*\1)/gi;
-  let maxWord = "";
-  let maxCount = -1;
-
-  chosen.forEach((set) => {
-    set.forEach((word) => {
-      const matches = word.match(vowelRegex);
-      const count = matches ? matches.length : 0;
-      if (count > maxCount) {
-        maxCount = count;
-        maxWord = word;
-      }
-    });
-  });
-
-  // set up display for stickers chosen
-  let stickers = "";
-
-  chosen.forEach((set) => {
-    set.forEach((word) => {
-      stickers = stickers + word;
-    });
-    stickers = stickers + ", ";
-  });
+  let maxWord = chosen[0].toSorted((a,b) => countVowels(b)-countVowels(a))[0];
+  let maxCount = countVowels(maxWord);
 
   // display stickers chosen and biggest
-  document.getElementById("words").textContent = "Chosen stickers: " + stickers;
-  document.getElementById("result").textContent =
-    "Name with most vowels: " + maxWord + " (" + maxCount + ")";
+  const results = document.getElementById("results");
+  results.innerHTML = ''; // empty #results
 
-  // clear chosen
-  chosen = [];
+  chosen.forEach(set => {
+    // create card for each set of words
+    let card = document.createElement('div');
+    card.classList.add("card");
+
+    set.forEach(part => {
+      // create div for each word
+      let word = document.createElement('div');
+
+      // display countVowels() for each word
+      let number = document.createElement('div');
+      number.classList.add("number");
+      if (countVowels(part) == maxCount) word.classList.add("max"); // add class on largest words
+      number.textContent = countVowels(part);
+      word.appendChild(number);
+
+      let text = document.createElement('div');
+      text.classList.add("text");
+
+      Array.from(part).forEach(letter => {
+        // split each character into a span for coloring
+        let char = document.createElement('span');
+        char.textContent = letter;
+        // add class to letter if it's a vowel
+        if (countVowels(letter)) char.classList.add(letter.toLowerCase());
+        text.appendChild(char);
+      });
+      word.appendChild(text);
+      card.appendChild(word);
+    });
+
+    results.appendChild(card);
+  })
 }
