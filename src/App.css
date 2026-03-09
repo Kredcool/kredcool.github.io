@@ -6,7 +6,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   min-height: 100%;
   background-color: #282828;
 }
@@ -43,7 +44,7 @@ div.content {
   font-size: 15px;
   background-color: #665c54;
   font-weight: 500;
-  transition: .1s;
+  transition: 0.1s;
   transition-property: background border transform box-shadow;
   border: 2px solid #665c54;
   border-radius: 0 10px 0 0;
@@ -57,7 +58,6 @@ div.content {
 }
 
 #results {
-
 }
 
 .card {
@@ -81,7 +81,7 @@ div.content {
 }
 
 .max .number::after {
-  content: 'max!';
+  content: "max!";
   color: #a89984;
   padding-left: 5px;
   font-size: 20px;

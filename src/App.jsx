@@ -1,3 +1,4 @@
+// stickers
 const wordSets = [
   ["Ancestral", "Hot Dog", "Minotaur"],
   ["Eldrazi", "Guacamole", "Tightrope"],
@@ -11,6 +12,7 @@ const wordSets = [
   ["unsanctioned", "ancient", "juggler"],
 ];
 
+// count the vowels of the given letter
 function countVowels(s) {
   const vowelRegex = /([aeiouy])(?!.*\1)/gi;
   const matches = s.match(vowelRegex);
@@ -22,40 +24,48 @@ function checkSet() {
   let tempSet = [...wordSets]; //create a shallow ref meaning no overwrite
   // add 3 sets randomly to chosen
   //            make array of len 3         fill with 3 random splices of tempSet                [0] bc splice returns array
-  let chosen = Array.from({length:3}, () => tempSet.splice(Math.floor(Math.random() * tempSet.length), 1)[0])
-  //               sort by max number of vowels. if b has higher max vowels it should go before a
-                    .sort((a,b) => Math.max(...b.map(s => countVowels(s))) - Math.max(...a.map(s => countVowels(s))));
-  
+  let chosen = Array.from(
+    { length: 3 },
+    () => tempSet.splice(Math.floor(Math.random() * tempSet.length), 1)[0],
+  )
+    //               sort by max number of vowels. if b has higher max vowels it should go before a
+    .sort(
+      (a, b) =>
+        Math.max(...b.map((s) => countVowels(s))) -
+        Math.max(...a.map((s) => countVowels(s))),
+    );
 
-  let maxWord = chosen[0].toSorted((a,b) => countVowels(b)-countVowels(a))[0];
+  let maxWord = chosen[0].toSorted(
+    (a, b) => countVowels(b) - countVowels(a),
+  )[0];
   let maxCount = countVowels(maxWord);
 
   // display stickers chosen and biggest
   const results = document.getElementById("results");
-  results.innerHTML = ''; // empty #results
+  results.innerHTML = ""; // empty #results
 
-  chosen.forEach(set => {
+  chosen.forEach((set) => {
     // create card for each set of words
-    let card = document.createElement('div');
+    let card = document.createElement("div");
     card.classList.add("card");
 
-    set.forEach(part => {
+    set.forEach((part) => {
       // create div for each word
-      let word = document.createElement('div');
+      let word = document.createElement("div");
 
       // display countVowels() for each word
-      let number = document.createElement('div');
+      let number = document.createElement("div");
       number.classList.add("number");
       if (countVowels(part) == maxCount) word.classList.add("max"); // add class on largest words
       number.textContent = countVowels(part);
       word.appendChild(number);
 
-      let text = document.createElement('div');
+      let text = document.createElement("div");
       text.classList.add("text");
 
-      Array.from(part).forEach(letter => {
+      Array.from(part).forEach((letter) => {
         // split each character into a span for coloring
-        let char = document.createElement('span');
+        let char = document.createElement("span");
         char.textContent = letter;
         // add class to letter if it's a vowel
         if (countVowels(letter)) char.classList.add(letter.toLowerCase());
@@ -66,5 +76,24 @@ function checkSet() {
     });
 
     results.appendChild(card);
-  })
+  });
 }
+
+function App() {
+  return (
+    <>
+      <div className="header">
+        <div className="title">Etali ____ Goblin mana generator</div>
+        <button className="btn" onClick={() => checkSet()}>
+          Generate Name
+        </button>
+      </div>
+
+      <div id="results">
+        <div className="card">Push 'Check Set' button</div>
+      </div>
+    </>
+  );
+}
+
+export default App;
