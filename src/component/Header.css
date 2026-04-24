@@ -10,10 +10,8 @@ nav > a {
   padding: 0 15px;
   text-decoration: none;
   color: #ebdbb2;
-  height: 24px;
   transition: 200ms ease-in-out;
   transition-property: transform border;
-  box-sizing: content-box;
 }
 
 nav > a.active {
@@ -21,6 +19,6 @@ nav > a.active {
 }
 
 nav > a:hover {
-  height: 29px;
+  height: 30px;
   transform: translateY(-5px);
 }
