@@ -24,7 +24,3 @@ nav > a:hover {
   height: 29px;
   transform: translateY(-5px);
 }
-
-nav > .spacer {
-  flex: 1;
-}

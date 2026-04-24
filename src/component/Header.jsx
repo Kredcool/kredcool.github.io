@@ -7,7 +7,6 @@ const Header = () => {
     <nav>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/Etali_Stickers">Etali Stickers</NavLink>
-      <div className="spacer"></div>
     </nav>
   );
 };
