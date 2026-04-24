@@ -1,21 +1,24 @@
-#menu-outer {
-  height: 84px;
+nav {
+  width: 100%;
+  border-bottom: 1px solid #a89984;
+  margin-bottom: 36px;
+  display: flex;
+  height: 25px;
 }
 
-.table {
-  display: table;
-  margin: 0 auto;
+nav > a {
+  padding: 0 15px;
+  text-decoration: none;
+  color: #ebdbb2;
+  transition: 200ms ease-in-out;
+  transition-property: transform border;
 }
 
-ul#horizontal-list {
-  background-color: #ebdbb2;
-  min-width: 670px;
-  list-style: none;
+nav > a.active {
+  border-bottom: 1px solid #fe8019;
 }
 
-ul#horizontal-list li {
-  padding-left: 25px;
-  padding-right: 25px;
-  background-color: #a89984;
-  display: inline;
+nav > a:hover {
+  height: 30px;
+  transform: translateY(-5px);
 }

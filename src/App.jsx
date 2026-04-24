@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 // component imports
-import Header from "./Component/Header";
+import Header from "./component/Header";
 
 // page imports
 import EtaliStickers from "./pages/Etali";
