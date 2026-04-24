@@ -1,4 +1,5 @@
 import React from "react";
+import "./Etali.css";
 
 // stickers
 const wordSets = [

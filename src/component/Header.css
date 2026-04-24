@@ -1,0 +1,21 @@
+#menu-outer {
+  height: 84px;
+}
+
+.table {
+  display: table;
+  margin: 0 auto;
+}
+
+ul#horizontal-list {
+  background-color: #ebdbb2;
+  min-width: 670px;
+  list-style: none;
+}
+
+ul#horizontal-list li {
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: #a89984;
+  display: inline;
+}

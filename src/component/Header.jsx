@@ -1,9 +1,10 @@
 import React from "react";
+import "./Header.css";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div id="menu-outer">
+    <nav id="menu-outer">
       <div class="table">
         <ul id="horizontal-list">
           <li>
@@ -14,7 +15,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 
