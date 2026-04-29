@@ -1,0 +1,28 @@
+name: Update etaliStickersExplain program with last commit date
+on:
+  push:
+    paths:
+      - src/pages/Etali.jsx
+  workflow_dispatch:
+
+jobs:
+  update-explain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get last commit date
+        run: |
+          DATE=$(git log -1 --format=%cd -- src/pages/Etali.jsx)
+          echo "LAST_COMMIT_DATE=$DATE" >> $GITHUB_ENV
+
+      - name: Update explain
+        run: |
+          sed -i "s|Last Program Updated:.*|Last Program Updated: $LAST_COMMIT_DATE|g" documents/etaliStickersExplain.md
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git commit -am "Update etaliStickersExplain.md with last program commit date"
+          git push

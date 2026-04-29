@@ -26,12 +26,12 @@ function checkSet() {
   // set up temp sets
   let tempSet = [...wordSets]; //create a shallow ref meaning no overwrite
   // add 3 sets randomly to chosen
-  //            make array of len 3         fill with 3 random splices of tempSet                [0] bc splice returns array
+  // make array of len 3 and fill with 3 random splices of tempSet[0] bc splice returns array
   let chosen = Array.from(
     { length: 3 },
     () => tempSet.splice(Math.floor(Math.random() * tempSet.length), 1)[0],
   )
-    //               sort by max number of vowels. if b has higher max vowels it should go before a
+    // sort by max number of vowels. if b has higher max vowels it should go before a
     .sort(
       (a, b) =>
         Math.max(...b.map((s) => countVowels(s))) -

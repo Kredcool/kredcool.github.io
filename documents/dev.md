@@ -1,0 +1,2 @@
+run with: `npm run dev`
+commit to website with: `npm run build; npm run deploy`
