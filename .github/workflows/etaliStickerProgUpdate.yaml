@@ -21,7 +21,7 @@ jobs:
 
       - name: Update explain
         run: |
-          sed -i "s|Last Program Updated:.*|Last Program Updated: $LAST_COMMIT_DATE|g" documents/etaliStickersExplain.md
+          sed -i "s|Last Program Updated:.*|Last Program Updated: $LAST_COMMIT_DATE|g**" documents/etaliStickersExplain.md
 
       - name: Commit changes
         run: |
