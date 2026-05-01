@@ -149,7 +149,7 @@ let tempSet = [...wordSets]; //create a shallow ref meaning no overwrite
 
 This bit is pretty heavily commented so this is just beating a horse more to death but this creates a sheet of stickers that we can modify without overwriting the original sheet.
 
-#### Pick Three random and count the vowels
+#### **Pick Three Random and Count The Vowels**
 
 Lines 28-39
 
@@ -167,3 +167,22 @@ let chosen = Array.from(
       Math.max(...a.map((s) => countVowels(s))),
   );
 ```
+
+Again this segment is pretty heavily commented, it takes a random 3 stickers and sorts all by their vowels count.
+
+#### **Find The Highest Vowel Count**
+
+Lines: 41-44
+
+```javascript
+let maxWord = chosen[0].toSorted((a, b) => countVowels(b) - countVowels(a))[0];
+let maxCount = countVowels(maxWord);
+```
+
+This grabs the highest vowel count word and finds what the highest vowel count is.
+
+#### **The Rest**
+
+Lines: 46-102
+
+Past this point the program is displaying the chosen stickers.
