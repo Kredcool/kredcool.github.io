@@ -1,8 +1,8 @@
-name: Update etaliStickersExplain program with last commit date
+name: Update etaliStickersExplain text with last commit date
 on:
   push:
     paths:
-      - src/pages/Etali.jsx
+      - documents/etaliStickersExplain.md
   workflow_dispatch:
 
 permissions:
@@ -16,16 +16,16 @@ jobs:
 
       - name: Get last commit date
         run: |
-          DATE=$(git log -1 --format=%cd -- src/pages/Etali.jsx)
+          DATE=$(git log -1 --format=%cd -- documents/etaliStickersExplain.md)
           echo "LAST_COMMIT_DATE=$DATE" >> $GITHUB_ENV
 
       - name: Update explain
         run: |
-          sed -i "s|Last Program Updated:.*|Last Program Updated:\*\* $LAST_COMMIT_DATE|g" documents/etaliStickersExplain.md
+          sed -i "s|Last Explanation Update:.*|Last Explanation Update:\*\* $LAST_COMMIT_DATE|g" documents/etaliStickersExplain.md
 
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git commit -am "Update etaliStickersExplain.md with last program commit date"
+          git commit -am "Update etaliStickersExplain.md with last text commit date"
           git push
