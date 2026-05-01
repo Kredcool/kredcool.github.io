@@ -4,7 +4,11 @@ on:
     paths:
       - src/pages/Etali.jsx
   workflow_dispatch:
-
+  
+permissions: 
+  contents: read
+  pages: write 
+  
 jobs:
   update-explain:
     runs-on: ubuntu-latest
