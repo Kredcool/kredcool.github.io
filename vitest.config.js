@@ -8,8 +8,10 @@ export default defineConfig({
     globals: true, // Optional: if you want global APIs like 'expect'
     environment: "jsdom", // Recommended for React component testing
     coverage: {
-      include: ["src/pages/*.jsx", "src/componet/*.jsx", "src/App.jsx"],
-      exclude: [],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "**/layout.tsx", // remove layout.tsx
+      ],
     },
   },
 });
