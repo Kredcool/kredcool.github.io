@@ -1,11 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  countVowels,
-  generateStickerSets,
-  type StickerSet,
-} from "./stickers";
+import { countVowels, generateStickerSets, type StickerSet } from "./stickers";
 
 function StickerCard({
   stickerSet,
@@ -24,7 +20,9 @@ function StickerCard({
           <div key={word} className="sticker-word">
             {/* Show each word's vowel score and mark the highest-scoring words. */}
             <div className="vowel-count">
-              <span aria-label={`${vowelCount} unique vowels`}>{vowelCount}</span>
+              <span aria-label={`${vowelCount} unique vowels`}>
+                {vowelCount}
+              </span>
               {isMaximum && <span className="max-label">max!</span>}
             </div>
             <div>
